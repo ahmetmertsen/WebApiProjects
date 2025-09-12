@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\HotelReservationAPI.Application\HotelReservationAPI.Application.csproj" />
+  </ItemGroup>
+
 </Project>

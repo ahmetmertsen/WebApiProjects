@@ -1,3 +1,8 @@
+using HotelReservationAPI.Application.Repositories;
+using HotelReservationAPI.Persistence.Contexts;
+using HotelReservationAPI.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 namespace HotelReservationAPI.WebAPI
 {
     public class Program
@@ -12,6 +17,11 @@ namespace HotelReservationAPI.WebAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<HotelReservationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+            builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+            builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 
             var app = builder.Build();
 
