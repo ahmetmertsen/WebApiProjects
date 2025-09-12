@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelReservationAPI.Persistence
+namespace HotelReservationAPI.Persistence.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {

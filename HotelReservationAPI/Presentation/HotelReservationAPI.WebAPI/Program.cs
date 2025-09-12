@@ -1,8 +1,8 @@
 using HotelReservationAPI.Application.Repositories;
 using HotelReservationAPI.Application.UnitOfWork;
-using HotelReservationAPI.Persistence;
 using HotelReservationAPI.Persistence.Contexts;
 using HotelReservationAPI.Persistence.Repositories;
+using HotelReservationAPI.Persistence.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelReservationAPI.WebAPI
