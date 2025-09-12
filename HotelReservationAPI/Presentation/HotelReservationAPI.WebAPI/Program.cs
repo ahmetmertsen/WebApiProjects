@@ -1,4 +1,6 @@
 using HotelReservationAPI.Application.Repositories;
+using HotelReservationAPI.Application.UnitOfWork;
+using HotelReservationAPI.Persistence;
 using HotelReservationAPI.Persistence.Contexts;
 using HotelReservationAPI.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +24,7 @@ namespace HotelReservationAPI.WebAPI
             builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
             builder.Services.AddScoped<IRoomRepository, RoomRepository>();
             builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
 
