@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelReservationAPI.Application.Features.Reservations.Commands.Create
 {
-    public record CreateReservationCommand(int CustomerId, int RoomId, DateTime StartDate, DateTime EndDate)
+    public record CreateReservationCommandResponse(int Id, int CustomerId, int RoomId, DateTime StartDate, DateTime EndDate)
     {
     }
 }

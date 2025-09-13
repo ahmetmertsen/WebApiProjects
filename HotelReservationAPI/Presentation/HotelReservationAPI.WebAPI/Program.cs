@@ -1,5 +1,19 @@
+using FluentValidation;
+using HotelReservationAPI.Application.Features.Customers.Commands.Create;
+using HotelReservationAPI.Application.Features.Customers.Commands.Delete;
+using HotelReservationAPI.Application.Features.Customers.Commands.Update;
+using HotelReservationAPI.Application.Features.Reservations.Commands.Create;
+using HotelReservationAPI.Application.Features.Reservations.Commands.Delete;
+using HotelReservationAPI.Application.Features.Reservations.Commands.Update;
+using HotelReservationAPI.Application.Features.Rooms.Commands.Create;
+using HotelReservationAPI.Application.Features.Rooms.Commands.Delete;
+using HotelReservationAPI.Application.Features.Rooms.Commands.Update;
+using HotelReservationAPI.Application.Mapping.CustomerMapper;
 using HotelReservationAPI.Application.Repositories;
 using HotelReservationAPI.Application.UnitOfWork;
+using HotelReservationAPI.Application.Validators.CustomerValidator;
+using HotelReservationAPI.Application.Validators.ReservationValidator;
+using HotelReservationAPI.Application.Validators.RoomValidator;
 using HotelReservationAPI.Persistence.Contexts;
 using HotelReservationAPI.Persistence.Repositories;
 using HotelReservationAPI.Persistence.UnitOfWork;
@@ -24,7 +38,12 @@ namespace HotelReservationAPI.WebAPI
             builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
             builder.Services.AddScoped<IRoomRepository, RoomRepository>();
             builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
-            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();   
+            
+            //Validasyon, diðerleride IoC cotainer'a eklenir.
+            builder.Services.AddValidatorsFromAssemblyContaining<CreateCustomerCommandValidator>();
+
+            builder.Services.AddAutoMapper(typeof(CustomerProfile).Assembly);
 
             var app = builder.Build();
 
