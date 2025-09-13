@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelReservationAPI.Application.Features.Customers.Commands.Delete
 {
-    public record DeleteCustomerCommandResponse(int Id, string FullName)
+    public record DeleteCustomerCommandResponse(int Id)
     {
     }
    
