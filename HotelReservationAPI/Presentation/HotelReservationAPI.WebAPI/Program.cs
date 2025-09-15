@@ -17,6 +17,7 @@ using HotelReservationAPI.Application.Validators.RoomValidator;
 using HotelReservationAPI.Persistence.Contexts;
 using HotelReservationAPI.Persistence.Repositories;
 using HotelReservationAPI.Persistence.UnitOfWork;
+using HotelReservationAPI.WebAPI.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelReservationAPI.WebAPI
@@ -48,6 +49,8 @@ namespace HotelReservationAPI.WebAPI
             builder.Services.AddAutoMapper(typeof(CustomerProfile).Assembly);
 
             var app = builder.Build();
+
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

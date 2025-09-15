@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using HotelReservationAPI.Application.UnitOfWork;
+using HotelReservationAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace HotelReservationAPI.Application.Features.Rooms.Commands.Update
             var roomEntity = await _unitOfWork.RoomRepository.GetByIdAsync(request.Id);
             if (roomEntity == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException("Oda Bulunamadı...");
             }
 
             _mapper.Map(request, roomEntity);

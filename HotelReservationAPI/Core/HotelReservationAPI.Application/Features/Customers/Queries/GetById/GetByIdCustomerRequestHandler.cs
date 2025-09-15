@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HotelReservationAPI.Application.Dtos;
 using HotelReservationAPI.Application.UnitOfWork;
+using HotelReservationAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace HotelReservationAPI.Application.Features.Customers.Queries.GetById
             var customer = await _unitOfWork.CustomerRepository.GetByIdAsync(request.Id);
             if (customer == null) 
             {
-                //Exception yazılacak.
+                throw new NotFoundException("Müşteri Bulunamadı...");
             }
             return _mapper.Map<CustomerDto>(customer);
         }

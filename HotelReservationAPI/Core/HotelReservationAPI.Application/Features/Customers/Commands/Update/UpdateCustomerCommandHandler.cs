@@ -2,6 +2,7 @@
 using FluentValidation;
 using HotelReservationAPI.Application.Features.Customers.Commands.Create;
 using HotelReservationAPI.Application.UnitOfWork;
+using HotelReservationAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace HotelReservationAPI.Application.Features.Customers.Commands.Update
             await _validator.ValidateAndThrowAsync(request, cancellationToken);
             var customerEntity = await _unitOfWork.CustomerRepository.GetByIdAsync(request.Id);
             if (customerEntity == null) {
-                //Exception yazılacak.
+                throw new NotFoundException("Müşteri Bulunamadı...");
             }
             _mapper.Map(request, customerEntity);
             customerEntity.DateOfBirth = DateTime.SpecifyKind(request.DateOfBirth, DateTimeKind.Utc);

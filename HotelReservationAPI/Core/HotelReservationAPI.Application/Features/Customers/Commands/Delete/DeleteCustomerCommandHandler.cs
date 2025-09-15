@@ -2,6 +2,7 @@
 using FluentValidation;
 using HotelReservationAPI.Application.UnitOfWork;
 using HotelReservationAPI.Domain.Entites;
+using HotelReservationAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HotelReservationAPI.Application.Dtos;
 using HotelReservationAPI.Application.UnitOfWork;
+using HotelReservationAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,12 @@ namespace HotelReservationAPI.Application.Features.Rooms.Queries.GetById
 
         public async Task<RoomDto> Handle(GetByIdRoomRequest request,  CancellationToken cancellationToken)
         {
-            var user =  await _unitOfWork.RoomRepository.GetByIdAsync(request.Id);
-            return _mapper.Map<RoomDto>(user);
+            var room =  await _unitOfWork.RoomRepository.GetByIdAsync(request.Id);
+            if (room == null) 
+            {
+                throw new NotFoundException("Oda Bulunamadı....");
+            }
+            return _mapper.Map<RoomDto>(room);
         }
     }
 }
