@@ -33,10 +33,9 @@ namespace HotelReservationAPI.Persistence.Repositories.Common
             return await Table.FindAsync(id);
         }
 
-        public async Task<EntityEntry<T>> AddAsync(T entity)
-        {
-            return await Table.AddAsync(entity);
-        }
+        public async Task<EntityEntry<T>> AddAsync(T entity) => await Table.AddAsync(entity);
+
+
 
         public EntityEntry<T> UpdateAsync(T entity)
         {

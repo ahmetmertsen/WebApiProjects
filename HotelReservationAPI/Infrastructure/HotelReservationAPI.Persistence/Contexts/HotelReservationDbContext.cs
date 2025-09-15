@@ -15,5 +15,6 @@ namespace HotelReservationAPI.Persistence.Contexts
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+
     }
 }

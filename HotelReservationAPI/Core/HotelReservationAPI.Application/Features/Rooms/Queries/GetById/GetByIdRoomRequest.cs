@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace HotelReservationAPI.Application.Features.Rooms.Queries.GetById
 {
-    public record GetByIdRoomRequest(int Id) : IRequest<RoomDto>
+    public record GetByIdRoomRequest : IRequest<RoomDto>
     {
+        public int Id { get; set; }
     }
 }

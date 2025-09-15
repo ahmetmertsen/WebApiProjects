@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HotelReservationAPI.Application.Features.Reservations.Queries.GetAll
 {
-    public class GetAllReservationsRequestHandler : IRequestHandler<GetAllReservationsRequest, List<ReservationDto>
+    public class GetAllReservationsRequestHandler : IRequestHandler<GetAllReservationsRequest, List<ReservationDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

@@ -16,11 +16,10 @@ namespace HotelReservationAPI.Application.Features.Customers.Commands.Delete
         private readonly IUnitOfWork _unitOfWork;
         private readonly IValidator<DeleteCustomerCommand> _validator;
 
-        public DeleteCustomerCommandHandler(IUnitOfWork unitOfWork, IValidator<DeleteCustomerCommand> validator)
+        public DeleteCustomerCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IValidator<DeleteCustomerCommand> validator)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
-
         }
 
         public async Task<DeleteCustomerCommandResponse> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)

@@ -28,6 +28,9 @@ namespace HotelReservationAPI.Application.Features.Reservations.Commands.Create
         {
             await _validator.ValidateAndThrowAsync(request, cancellationToken);
             var reservationEntity = _mapper.Map<Reservation>(request);
+            reservationEntity.StartDate = DateTime.SpecifyKind(request.StartDate, DateTimeKind.Utc);
+            reservationEntity.EndDate = DateTime.SpecifyKind(request.EndDate, DateTimeKind.Utc);
+
             await _unitOfWork.ReservationRepository.AddAsync(reservationEntity);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return new CreateReservationCommandResponse(reservationEntity.Id, reservationEntity.CustomerId, reservationEntity.RoomId, reservationEntity.StartDate, reservationEntity.EndDate);

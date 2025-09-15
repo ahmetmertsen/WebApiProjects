@@ -17,6 +17,14 @@ namespace HotelReservationAPI.Persistence.UnitOfWork
         public IRoomRepository RoomRepository { get; }
         public IReservationRepository ReservationRepository { get; }
 
+        public UnitOfWork(HotelReservationDbContext context, ICustomerRepository customerRepository, IRoomRepository roomRepository, IReservationRepository reservationRepository)
+        {
+            _context = context;
+            CustomerRepository = customerRepository;
+            RoomRepository = roomRepository;
+            ReservationRepository = reservationRepository;
+        }
+
         public void Dispose() => _context.Dispose();
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)

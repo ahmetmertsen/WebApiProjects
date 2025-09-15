@@ -31,8 +31,14 @@ namespace HotelReservationAPI.Application.Features.Reservations.Commands.Update
             {
                 //Exception yazılacak
             }
+            
             _mapper.Map(request, reservationEntity);
+            reservationEntity.StartDate = DateTime.SpecifyKind(request.StartDate, DateTimeKind.Utc);
+            reservationEntity.EndDate = DateTime.SpecifyKind(request.EndDate, DateTimeKind.Utc);
+
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return new UpdateReservationCommandResponse(reservationEntity.Id, reservationEntity.CustomerId, reservationEntity.RoomId, reservationEntity.StartDate, reservationEntity.EndDate);
+
+        }
     }
 }

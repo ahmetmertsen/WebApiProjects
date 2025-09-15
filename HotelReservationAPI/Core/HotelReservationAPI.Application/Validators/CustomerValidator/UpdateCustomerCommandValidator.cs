@@ -22,7 +22,7 @@ namespace HotelReservationAPI.Application.Validators.CustomerValidator
             .Length(11).WithMessage("Tc Kimlik Numarası 11 karakter olmalı!");
 
             RuleFor(x => x.DateOfBirth).NotEmpty().WithMessage("Doğum Tarihi boş olmamalıdır.")
-                .LessThan(DateTime.Today).WithMessage("Doğum Tarihi bugünden küçük olmamalı!");
+                .LessThan(DateTime.Today).WithMessage("Doğum Tarihi bugünden küçük olmalıdır!");
 
             RuleFor(x => x.PhoneNumber).Matches(@"^\+?\d{10,15}$").WithMessage("Geçersiz telefon numarası");
         }

@@ -10,5 +10,6 @@ namespace HotelReservationAPI.Application.Repositories
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
+        Task<Customer?> GetByIdentityNumberAsync(string identityNumber);
     }
 }

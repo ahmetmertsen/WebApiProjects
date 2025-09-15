@@ -28,9 +28,11 @@ namespace HotelReservationAPI.Application.Features.Customers.Commands.Create
         {
             await _validator.ValidateAndThrowAsync(request, cancellationToken);
             var customerEntity = _mapper.Map<Customer>(request);
+            customerEntity.DateOfBirth = DateTime.SpecifyKind(request.DateOfBirth, DateTimeKind.Utc);
+
             await _unitOfWork.CustomerRepository.AddAsync(customerEntity);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
-            return new CreateCustomerCommandResponse(customerEntity.Id, customerEntity.IdentityNumber , customerEntity.FullName , customerEntity.DateOfBirth, customerEntity.PhoneNumber);
+            return new CreateCustomerCommandResponse(customerEntity.Id, customerEntity.IdentityNumber, customerEntity.FullName, customerEntity.DateOfBirth, customerEntity.PhoneNumber);
         }
     }
 }

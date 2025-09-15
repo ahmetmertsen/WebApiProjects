@@ -35,6 +35,8 @@ namespace HotelReservationAPI.WebAPI
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<HotelReservationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddMediatR(cfg =>
+                cfg.RegisterServicesFromAssemblyContaining<CreateCustomerCommand>());
             builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
             builder.Services.AddScoped<IRoomRepository, RoomRepository>();
             builder.Services.AddScoped<IReservationRepository, ReservationRepository>();

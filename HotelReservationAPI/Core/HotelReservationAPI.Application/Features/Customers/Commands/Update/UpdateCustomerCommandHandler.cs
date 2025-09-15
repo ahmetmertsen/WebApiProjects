@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using HotelReservationAPI.Application.Features.Customers.Commands.Create;
 using HotelReservationAPI.Application.UnitOfWork;
 using MediatR;
 using System;
@@ -31,6 +32,8 @@ namespace HotelReservationAPI.Application.Features.Customers.Commands.Update
                 //Exception yazılacak.
             }
             _mapper.Map(request, customerEntity);
+            customerEntity.DateOfBirth = DateTime.SpecifyKind(request.DateOfBirth, DateTimeKind.Utc);
+
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return new UpdateCustomerCommandResponse(customerEntity.Id, customerEntity.IdentityNumber, customerEntity.FullName, customerEntity.DateOfBirth, customerEntity.PhoneNumber);
         }

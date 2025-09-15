@@ -31,6 +31,7 @@ namespace HotelReservationAPI.Application.Features.Rooms.Commands.Create
             var roomEntity = _mapper.Map<Room>(request);
             await _unitOfWork.RoomRepository.AddAsync(roomEntity);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
             return new CreateRoomCommandResponse(roomEntity.Id, roomEntity.RoomNo, roomEntity.Capacity, roomEntity.Price);
         }
     }
