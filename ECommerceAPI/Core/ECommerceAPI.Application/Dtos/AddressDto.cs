@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Dtos
 {
-    public record AddressDto
+    public class AddressDto
     {
+        public int Id { get; set; } 
         public int UserId { get; set; }
         public string City { get; set; }
         public string District { get; set; }

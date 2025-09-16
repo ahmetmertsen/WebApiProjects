@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Dtos
 {
-    public record UserDto
+    public class UserDto
     {
         public string FullName { get; set; }
         public string Email { get; set; }

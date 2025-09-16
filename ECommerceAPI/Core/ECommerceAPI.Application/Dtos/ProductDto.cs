@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Dtos
 {
-    public record ProductDto
+    public class ProductDto
     {
         public string Name { get; set; }
         public decimal Price { get; set; }

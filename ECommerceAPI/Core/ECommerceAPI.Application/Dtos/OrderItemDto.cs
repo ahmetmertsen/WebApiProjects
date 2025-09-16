@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Dtos
 {
-    public record OrderItemDto
+    public class OrderItemDto
     {
         public int Id { get; set; }
         public int OrderId { get; set; }

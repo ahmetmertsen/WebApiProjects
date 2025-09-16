@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Dtos
 {
-    public record PaymentDto
+    public class PaymentDto
     {
         public int Id { get; set; }
         public int OrderId { get; set; }
