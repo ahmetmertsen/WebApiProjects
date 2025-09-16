@@ -11,7 +11,7 @@ namespace ECommerceAPI.Application.Dtos
         public int Id { get; set; }
         public int OrderId { get; set; }
         public int ProductId { get; set; }
-        public long UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
         public int Piece { get; set; }
     }
 }

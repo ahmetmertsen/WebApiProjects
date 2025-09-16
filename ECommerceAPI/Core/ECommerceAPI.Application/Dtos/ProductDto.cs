@@ -9,7 +9,7 @@ namespace ECommerceAPI.Application.Dtos
     public record ProductDto
     {
         public string Name { get; set; }
-        public long Price { get; set; }
-        public long Stock { get; set; }
+        public decimal Price { get; set; }
+        public int Stock { get; set; }
     }
 }

@@ -13,6 +13,8 @@ namespace ECommerceAPI.Application.Dtos
         public int OrderId { get; set; }
         public PaymentStatus Status { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
-        public long Amount { get; set; }
+        public decimal Amount { get; set; }
+
+        public DateTime CreatedTime { get; set; }
     }
 }

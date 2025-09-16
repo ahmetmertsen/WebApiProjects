@@ -15,5 +15,7 @@ namespace ECommerceAPI.Application.Dtos
         public int AddressId { get; set; }
         public OrderStatus Status { get; set; }
         public decimal TotalAmount { get; set; }
+
+        List<OrderItemDto> Items { get; set; }
     }
 }

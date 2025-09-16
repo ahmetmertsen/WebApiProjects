@@ -10,5 +10,7 @@ namespace ECommerceAPI.Application.Dtos
     {
         public int Id { get; set; }
         public int UserId { get; set; }
+
+        List<CartItemDto> Items { get; set; }
     }
 }
