@@ -1,6 +1,8 @@
 ﻿using ECommerceAPI.Application.Repositories;
+using ECommerceAPI.Application.UnitOfWork;
 using ECommerceAPI.Persistence.Contexts;
 using ECommerceAPI.Persistence.Repositories;
+using ECommerceAPI.Persistence.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -25,6 +27,8 @@ namespace ECommerceAPI.Persistence.Extensions
             services.AddScoped<IOrderItemRepository, OrderItemRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWorkP>();
 
             return services;
         }

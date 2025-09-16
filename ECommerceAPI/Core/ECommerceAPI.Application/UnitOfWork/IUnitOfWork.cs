@@ -1,0 +1,24 @@
+﻿using ECommerceAPI.Application.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ECommerceAPI.Application.UnitOfWork
+{
+    public interface IUnitOfWork : IDisposable
+    {
+        public IUserRepository UserRepository { get; }
+        public IAddressRepository AddressRepository { get; }
+        public ICartRepository CartRepository { get; }
+        public ICartItemRepository CartItemRepository { get; }
+        public IOrderRepository OrderRepository { get; }
+        public IOrderItemRepository OrderItemRepository { get; }
+        public IProductRepository ProductRepository { get; }
+        public IPaymentRepository PaymentRepository { get; }
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+
+    }
+}
