@@ -1,4 +1,7 @@
+using ECommerceAPI.Application.Repositories;
 using ECommerceAPI.Persistence.Contexts;
+using ECommerceAPI.Persistence.Repositories;
+using ECommerceAPI.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceAPI.WebAPI
@@ -16,7 +19,9 @@ namespace ECommerceAPI.WebAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<ECommerceDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddPersistenceService();
+
 
             var app = builder.Build();
 
