@@ -9,5 +9,6 @@ namespace ECommerceAPI.Application.Features.Addresses.Commands.Update
 {
     public record UpdateAddressCommand(int Id, string City, string District, string AddressDetails) : IRequest<UpdateAddressCommandResponse>
     {
+
     }
 }

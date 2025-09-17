@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Features.Payments.Commands.Create
 {
-    public record CreatePaymentCommandResponse(int Id, int OrderId, PaymentStatus Status = PaymentStatus.Pending)
+    public record CreatePaymentCommandResponse(int Id, int OrderId, PaymentStatus Status, PaymentMethod PaymentMethod, decimal Amount)
     {
     }
 }

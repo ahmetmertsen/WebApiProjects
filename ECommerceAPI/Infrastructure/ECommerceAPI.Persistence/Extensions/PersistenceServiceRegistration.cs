@@ -4,6 +4,7 @@ using ECommerceAPI.Persistence.Contexts;
 using ECommerceAPI.Persistence.Repositories;
 using ECommerceAPI.Persistence.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,10 @@ namespace ECommerceAPI.Persistence.Extensions
 {
     public static class PersistenceServiceRegistration
     {
-        public static IServiceCollection AddPersistenceService(this IServiceCollection services) {
+        public static IServiceCollection AddPersistenceService(this IServiceCollection services, IConfiguration configuration) {
 
-            services.AddDbContext<ECommerceDbContext>(options => options.UseNpgsql("DefaultConnection"));
+            services.AddDbContext<ECommerceDbContext>(options =>
+                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();

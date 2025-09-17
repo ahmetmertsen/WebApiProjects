@@ -3,6 +3,7 @@ using ECommerceAPI.Persistence.Contexts;
 using ECommerceAPI.Persistence.Repositories;
 using ECommerceAPI.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore;
+using ECommerceAPI.Application.Features.Users.Commands.Create;
 
 namespace ECommerceAPI.WebAPI
 {
@@ -20,7 +21,9 @@ namespace ECommerceAPI.WebAPI
             builder.Services.AddSwaggerGen();
 
 
-            builder.Services.AddPersistenceService();
+            builder.Services.AddPersistenceService(builder.Configuration);
+            builder.Services.AddMediatR(cfg =>
+                    cfg.RegisterServicesFromAssemblyContaining<CreateUserCommand>());
 
 
             var app = builder.Build();

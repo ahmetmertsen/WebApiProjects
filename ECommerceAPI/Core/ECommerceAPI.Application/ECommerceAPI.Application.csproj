@@ -7,11 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.36" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ECommerceAPI.Domain\ECommerceAPI.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\" />
+    <Folder Include="Validators\AddressValidator\" />
+    <Folder Include="Validators\CartValidator\" />
+    <Folder Include="Validators\CartItemValidator\" />
+    <Folder Include="Validators\PaymentValidator\" />
+    <Folder Include="Validators\ProductValidator\" />
+    <Folder Include="Validators\OrderItemValidator\" />
+    <Folder Include="Validators\OrderValidator\" />
   </ItemGroup>
 
 </Project>
