@@ -15,7 +15,7 @@ namespace ECommerceAPI.Application.Validators.ProductValidator
             RuleFor(x => x.Id).NotEmpty().WithMessage("ProductId boş olmamalı!")
             .GreaterThan(0).WithMessage("Geçerli bir ProductId girilmelidir");
 
-            RuleFor(x => x.QuantityChange).NotEmpty().WithMessage("Stok adet sayısı boş olmamalı!")
+            RuleFor(x => x.NewStock).NotEmpty().WithMessage("Stok adet sayısı boş olmamalı!")
                 .GreaterThan(0).WithMessage("Geçerli bir stok adet sayısı girilmelidir");
         }
     }

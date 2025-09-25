@@ -32,7 +32,7 @@ namespace ECommerceAPI.Application.Features.Users.Commands.Create
             var userEmail = await _unitOfWork.UserRepository.GetByEmailAsync(request.Email);
             if (userEmail != null)
             {
-                throw new NotFoundException("Email Mevcut...");
+                //Exception yazılacak.
             }
 
             var userEntity = _mapper.Map<User>(request);

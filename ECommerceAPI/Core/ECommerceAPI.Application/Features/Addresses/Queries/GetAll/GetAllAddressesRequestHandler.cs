@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Features.Addresses.Queries.GetAll
 {
-    public class GetAllAddressesRequestHandler : IRequestHandler<GetAllAddressesRequest,List<AddressDto>
+    public class GetAllAddressesRequestHandler : IRequestHandler<GetAllAddressesRequest,List<AddressDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

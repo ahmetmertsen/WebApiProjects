@@ -2,6 +2,7 @@
 using ECommerceAPI.Application.Dtos;
 using ECommerceAPI.Application.UnitOfWork;
 using ECommerceAPI.Domain.Entities;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -32,7 +33,7 @@ namespace ECommerceAPI.Application.Features.CartsItems.Commands.Update
             var CartItemEntity = await _unitOfWork.CartItemRepository.GetByIdAsync(request.Id);
             if (CartItemEntity == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{request.Id} Id'sine ait Sepet İçeriği bulunamadı...");
             }
 
             _mapper.Map(request, CartItemEntity);

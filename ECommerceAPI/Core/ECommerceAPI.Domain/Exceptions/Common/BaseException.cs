@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Domain.Exceptions.Common
 {
-    public class BaseException : Exception
+    public abstract class BaseException : Exception
     {
         public BaseException(string message) : base(message) { }
     }

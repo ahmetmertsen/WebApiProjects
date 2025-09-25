@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerceAPI.Application.UnitOfWork;
 using ECommerceAPI.Domain.Entities;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -27,6 +28,12 @@ namespace ECommerceAPI.Application.Features.Carts.Commands.Create
         public async Task<CreateCartCommandResponse> Handle(CreateCartCommand request, CancellationToken cancellationToken)
         {
             await _validator.ValidateAsync(request, cancellationToken);
+
+            var user = await _unitOfWork.UserRepository.GetByIdAsync(request.UserId);
+            if (user == null)
+            {
+                throw new NotFoundException($"{request.UserId} Id'sine ait Kullanıcı bulunamadı...");
+            }
 
             var cartEntity = _mapper.Map<Cart>(request);
             await _unitOfWork.CartRepository.AddAsync(cartEntity);

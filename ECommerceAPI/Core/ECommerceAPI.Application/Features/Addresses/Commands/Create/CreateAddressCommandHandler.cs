@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerceAPI.Application.UnitOfWork;
 using ECommerceAPI.Domain.Entities;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -27,6 +28,12 @@ namespace ECommerceAPI.Application.Features.Addresses.Commands.Create
         public async Task<CreateAddressCommandResponse> Handle(CreateAddressCommand request, CancellationToken cancellationToken)
         {
             await _validator.ValidateAndThrowAsync(request, cancellationToken);
+
+            var user = await _unitOfWork.UserRepository.GetByIdAsync(request.UserId);
+            if (user == null) 
+            {
+                throw new NotFoundException($"{request.UserId} Id'sine ait Kullanıcı bulunamadı...");
+            }
 
             var addressEntity = _mapper.Map<Address>(request);
             await _unitOfWork.AddressRepository.AddAsync(addressEntity);
