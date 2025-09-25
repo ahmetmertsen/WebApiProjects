@@ -2,6 +2,7 @@
 using ECommerceAPI.Domain.Entities;
 using ECommerceAPI.Persistence.Contexts;
 using ECommerceAPI.Persistence.Repositories.Common;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,9 @@ namespace ECommerceAPI.Persistence.Repositories
     {
         private readonly ECommerceDbContext _context;
         public CartRepository(ECommerceDbContext context) : base(context) { _context = context; }
-      
+
+        public async Task<Cart?> GetByUserIdAsync(int userId) => await _context.Carts.FirstOrDefaultAsync(c => c.UserId == userId);
+
+
     }
 }

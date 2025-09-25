@@ -10,5 +10,7 @@ namespace ECommerceAPI.Application.Repositories
 {
     public interface ICartRepository : IRepository<Cart>
     {
+
+        public Task<Cart?> GetByUserIdAsync(int userId);
     }
 }

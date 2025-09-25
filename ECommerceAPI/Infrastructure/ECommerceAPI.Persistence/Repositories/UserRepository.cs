@@ -3,6 +3,7 @@ using ECommerceAPI.Application.Repositories.Common;
 using ECommerceAPI.Domain.Entities;
 using ECommerceAPI.Persistence.Contexts;
 using ECommerceAPI.Persistence.Repositories.Common;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,7 @@ namespace ECommerceAPI.Persistence.Repositories
 
         public UserRepository(ECommerceDbContext context) : base(context) { _context = context; }
 
+        public async Task<User?> GetByEmailAsync(string email) => await _context.Users.FirstOrDefaultAsync(x =>  x.Email == email);
+        
     }
 }

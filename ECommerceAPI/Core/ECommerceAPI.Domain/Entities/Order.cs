@@ -16,7 +16,7 @@ namespace ECommerceAPI.Domain.Entities
         public int AddressId { get; set; }
         public Address Address { get; set; }
         public OrderStatus Status { get; set; }
-        public decimal TotalAmount { get; }
+        public decimal TotalAmount { get; set; }
 
         public ICollection<OrderItem>? Items { get; set; }
     }

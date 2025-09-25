@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Features.Products.Commands.UpdateStock
 {
-    public record UpdateProductStockCommand(int Id, int QuantityChange) : IRequest<UpdateProductStockCommandResponse>
+    public record UpdateProductStockCommand(int Id, int NewStock) : IRequest<UpdateProductStockCommandResponse>
     {
     }
 }

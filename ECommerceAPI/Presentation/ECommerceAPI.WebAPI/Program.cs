@@ -25,9 +25,12 @@ namespace ECommerceAPI.WebAPI
 
 
             builder.Services.AddPersistenceService(builder.Configuration);
+
             builder.Services.AddMediatR(cfg =>
                     cfg.RegisterServicesFromAssemblyContaining<CreateUserCommand>());
+
             builder.Services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
+
             builder.Services.AddAutoMapper(typeof(UserProfile).Assembly);
 
 

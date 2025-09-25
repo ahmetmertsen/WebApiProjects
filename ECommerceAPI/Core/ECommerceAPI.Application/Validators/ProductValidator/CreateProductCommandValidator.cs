@@ -10,7 +10,7 @@ namespace ECommerceAPI.Application.Validators.ProductValidator
 {
     public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
     {
-        CreateProductCommandValidator() 
+        public CreateProductCommandValidator() 
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Ürün İsmi boş olmamalı!")
                 .MinimumLength(2).WithMessage("Ürün İsmi en az 2 karekter olmalıdır!");

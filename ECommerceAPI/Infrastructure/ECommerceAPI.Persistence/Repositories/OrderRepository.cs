@@ -2,6 +2,7 @@
 using ECommerceAPI.Domain.Entities;
 using ECommerceAPI.Persistence.Contexts;
 using ECommerceAPI.Persistence.Repositories.Common;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace ECommerceAPI.Persistence.Repositories
         private readonly ECommerceDbContext _context;
 
         public OrderRepository(ECommerceDbContext context) : base(context) { _context = context; }
+
+        public async Task<List<Order>> GetAllOrdersByUserIdAsync(int UserId) => await _context.Orders.Where(x => x.UserId == UserId).ToListAsync();
 
     }
 }

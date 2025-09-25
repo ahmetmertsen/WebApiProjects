@@ -10,5 +10,7 @@ namespace ECommerceAPI.Application.Repositories
 {
     public interface IPaymentRepository : IRepository<Payment>
     {
+        public Task<Payment?> GetPaymentByOrderIdAsync(int OrderId);
+
     }
 }
