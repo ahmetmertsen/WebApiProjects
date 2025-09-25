@@ -2,6 +2,7 @@
 using ECommerceAPI.Application.UnitOfWork;
 using ECommerceAPI.Domain.Entities;
 using ECommerceAPI.Domain.Enum;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -32,7 +33,7 @@ namespace ECommerceAPI.Application.Features.Payments.Commands.Create
             var order = await _unitOfWork.OrderRepository.GetByIdAsync(request.OrderId);
             if (order == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{request.OrderId} Id'sine ait Sepet bulunamadı...");
             }
 
             var paymentEntity = _mapper.Map<Payment>(request);

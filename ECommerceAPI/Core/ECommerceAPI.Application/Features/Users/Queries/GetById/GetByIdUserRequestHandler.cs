@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerceAPI.Application.Dtos;
 using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace ECommerceAPI.Application.Features.Users.Queries.GetById
             var user = await _unitOfWork.UserRepository.GetByIdAsync(request.Id);
             if (user == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{request.Id} Id'sine ait Kullanıcı bulunamadı...");
             }
             var response = _mapper.Map<UserDto>(user);
             return response;

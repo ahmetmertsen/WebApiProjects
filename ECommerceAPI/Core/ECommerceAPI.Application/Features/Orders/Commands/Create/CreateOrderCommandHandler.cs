@@ -3,6 +3,7 @@ using ECommerceAPI.Application.Features.Orders.Queries.GetAll;
 using ECommerceAPI.Application.UnitOfWork;
 using ECommerceAPI.Domain.Entities;
 using ECommerceAPI.Domain.Enum;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -31,11 +32,15 @@ namespace ECommerceAPI.Application.Features.Orders.Commands.Create
             await _validator.ValidateAndThrowAsync(request, cancellationToken);
 
             var cart = await _unitOfWork.CartRepository.GetByUserIdAsync(request.UserId);
+            if (cart == null)
+            {
+                throw new NotFoundException($"{request.UserId} Id'sine ait Kullanıcı Sepeti bulunamadı...");
+            }
 
             var cartItem = await _unitOfWork.CartItemRepository.GetAllByCartIdAsync(cart.Id);
             if (cartItem == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{cart.Id} Id'sine ait Sepet bulunamadı...");
             }
 
             var order = new Order { UserId = request.UserId , AddressId=request.AddressId, Status = OrderStatus.Pending, TotalAmount = 0, Items = new List<OrderItem>() };
@@ -45,7 +50,7 @@ namespace ECommerceAPI.Application.Features.Orders.Commands.Create
                 var product = await _unitOfWork.ProductRepository.GetByIdAsync(item.ProductId);
                 if (product == null)
                 {
-                    //Exception Yazılacak.
+                    throw new NotFoundException($"{item.ProductId} Id'sine ait Ürün bulunamadı...");
                 }
 
                 var orderItem = new OrderItem { ProductId = item.ProductId, Piece = item.Piece, UnitPrice = product.Price };

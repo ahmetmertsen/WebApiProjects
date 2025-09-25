@@ -5,6 +5,7 @@ using ECommerceAPI.Application.Validators.UserValidator;
 using ECommerceAPI.Persistence.Contexts;
 using ECommerceAPI.Persistence.Extensions;
 using ECommerceAPI.Persistence.Repositories;
+using ECommerceAPI.WebAPI.Middlewares;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,6 +36,8 @@ namespace ECommerceAPI.WebAPI
 
 
             var app = builder.Build();
+
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

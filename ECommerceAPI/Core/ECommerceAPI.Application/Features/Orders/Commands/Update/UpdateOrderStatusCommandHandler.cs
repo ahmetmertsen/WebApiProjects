@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -30,7 +31,7 @@ namespace ECommerceAPI.Application.Features.Orders.Commands.Update
             var order = await _unitOfWork.OrderRepository.GetByIdAsync(request.Id);
             if (order == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{request.Id} Id'sine ait Sipariş bulunamadı...");
             }
 
             _mapper.Map(request, order);

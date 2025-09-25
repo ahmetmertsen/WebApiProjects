@@ -2,6 +2,7 @@
 using ECommerceAPI.Application.Dtos;
 using ECommerceAPI.Application.Features.Payments.Queries.GetById.GetPaymentByOrderId;
 using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace ECommerceAPI.Application.Features.Payments.Queries.GetById.GetPaymentB
             var payment = await _unitOfWork.PaymentRepository.GetByIdAsync(request.Id);
             if (payment == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{request.Id} Id'sine ait Ödeme bulunamadı...");
             }
 
             var response = _mapper.Map<PaymentDto>(payment);

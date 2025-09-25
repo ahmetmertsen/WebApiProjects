@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerceAPI.Application.Dtos;
 using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -31,7 +32,7 @@ namespace ECommerceAPI.Application.Features.Products.Commands.Update
             var productEntity = await _unitOfWork.ProductRepository.GetByIdAsync(request.Id);
             if (productEntity == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{request.Id} Id'sine ait Ürün bulunamadı...");
             }
 
             _mapper.Map(request, productEntity);

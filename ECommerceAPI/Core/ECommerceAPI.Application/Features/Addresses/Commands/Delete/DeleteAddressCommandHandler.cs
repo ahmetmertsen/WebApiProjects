@@ -1,4 +1,5 @@
 ﻿using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -24,10 +25,16 @@ namespace ECommerceAPI.Application.Features.Addresses.Commands.Delete
         {
             await _validator.ValidateAsync(request, cancellationToken);
 
-            await _unitOfWork.AddressRepository.RemoveAsync(request.Id);
+            var addresseEntity = await _unitOfWork.AddressRepository.GetByIdAsync(request.Id);
+            if (addresseEntity == null)
+            {
+                throw new NotFoundException($"{request.Id} Id'sine ait Adres bulunamadı...");
+            }
+
+            await _unitOfWork.AddressRepository.RemoveAsync(addresseEntity.Id);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return new DeleteAddressCommandResponse(request.Id);
+            return new DeleteAddressCommandResponse(addresseEntity.Id);
         }
     }
 }

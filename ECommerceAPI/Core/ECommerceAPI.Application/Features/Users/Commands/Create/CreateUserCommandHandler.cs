@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerceAPI.Application.UnitOfWork;
 using ECommerceAPI.Domain.Entities;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -31,7 +32,7 @@ namespace ECommerceAPI.Application.Features.Users.Commands.Create
             var userEmail = await _unitOfWork.UserRepository.GetByEmailAsync(request.Email);
             if (userEmail != null)
             {
-                //Exception yazılacak
+                throw new NotFoundException("Email Mevcut...");
             }
 
             var userEntity = _mapper.Map<User>(request);

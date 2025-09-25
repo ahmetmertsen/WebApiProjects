@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerceAPI.Application.Dtos;
 using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace ECommerceAPI.Application.Features.Addresses.Queries.GetById
             var address =  await _unitOfWork.AddressRepository.GetByIdAsync(request.Id);
             if (address == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{request.Id} Id'sine ait Adres bulunamadı...");
             }
 
             var response =  _mapper.Map<AddressDto>(address);

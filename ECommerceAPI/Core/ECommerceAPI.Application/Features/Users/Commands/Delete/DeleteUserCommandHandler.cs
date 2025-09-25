@@ -1,4 +1,5 @@
 ﻿using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -24,9 +25,15 @@ namespace ECommerceAPI.Application.Features.Users.Commands.Delete
         {
             await _validator.ValidateAndThrowAsync(request,cancellationToken);
 
-            await _unitOfWork.UserRepository.RemoveAsync(request.Id);
+            var user = await _unitOfWork.UserRepository.GetByIdAsync(request.Id);
+            if (user == null)
+            {
+                throw new NotFoundException($"{request.Id} Id'sine ait Kullanıcı bulunamadı...");
+            }
+
+            await _unitOfWork.UserRepository.RemoveAsync(user.Id);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
-            return new DeleteUserCommandResponse(request.Id);
+            return new DeleteUserCommandResponse(user.Id);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerceAPI.Application.Dtos;
 using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace ECommerceAPI.Application.Features.Orders.Queries.GetById
             var order = await _unitOfWork.OrderRepository.GetByIdAsync(request.Id);
             if (order == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{request.Id} Id'sine ait Sepet bulunamadı...");
             }
 
             var response = _mapper.Map<OrderDto>(order);

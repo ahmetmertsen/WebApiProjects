@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerceAPI.Application.Dtos;
 using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace ECommerceAPI.Application.Features.Products.Queries.GetById
             var product = await _unitOfWork.ProductRepository.GetByIdAsync(request.Id);
             if (product == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{request.Id} Id'sine ait Ürün bulunamadı...");
             }
 
             var response =  _mapper.Map<ProductDto>(product);

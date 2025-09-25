@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerceAPI.Application.Dtos;
 using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace ECommerceAPI.Application.Features.Carts.Queries.GetCartByUserId
             var cartEntity = await _unitOfWork.CartRepository.GetByUserIdAsync(request.UserId);
             if (cartEntity == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{request.UserId} Id'sine ait Kullanıcı bulunamadı...");
             }
 
             var response = _mapper.Map<CartDto>(cartEntity);

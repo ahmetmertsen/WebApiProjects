@@ -2,6 +2,7 @@
 using ECommerceAPI.Application.Dtos;
 using ECommerceAPI.Application.UnitOfWork;
 using ECommerceAPI.Domain.Entities;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -32,7 +33,7 @@ namespace ECommerceAPI.Application.Features.Addresses.Commands.Update
             var addressEntity = await _unitOfWork.AddressRepository.GetByIdAsync(request.Id);
             if (addressEntity == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException($"{request.Id} Id'sine ait Adres bulunamadı...");
             }
 
             _mapper.Map(request,addressEntity);

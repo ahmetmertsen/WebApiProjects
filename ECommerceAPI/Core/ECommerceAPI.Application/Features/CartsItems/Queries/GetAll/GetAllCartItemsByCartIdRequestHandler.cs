@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerceAPI.Application.Dtos;
 using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace ECommerceAPI.Application.Features.CartsItems.Queries.GetAll
             var cart = await _unitOfWork.CartRepository.GetByIdAsync(request.CartId);
             if (cart == null)
             {
-                //Exception yazılacak
+                throw new NotFoundException($"{request.CartId} Id'sine ait Sepet bulunamadı...");
             }
 
             var cartItems = await _unitOfWork.CartItemRepository.GetAllByCartIdAsync(cart.Id);

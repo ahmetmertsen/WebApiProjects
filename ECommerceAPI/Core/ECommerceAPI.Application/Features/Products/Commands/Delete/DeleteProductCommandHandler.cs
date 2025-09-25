@@ -1,4 +1,5 @@
 ﻿using ECommerceAPI.Application.UnitOfWork;
+using ECommerceAPI.Domain.Exceptions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -24,10 +25,16 @@ namespace ECommerceAPI.Application.Features.Products.Commands.Delete
         {
             await _validator.ValidateAndThrowAsync(request, cancellationToken);
 
-            await _unitOfWork.ProductRepository.RemoveAsync(request.Id);
+            var product = await _unitOfWork.ProductRepository.GetByIdAsync(request.Id);
+            if (product == null)
+            {
+                throw new NotFoundException($"{request.Id} Id'sine ait Ürün bulunamadı...");
+            }
+
+            await _unitOfWork.ProductRepository.RemoveAsync(product.Id);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return new DeleteProductCommandResponse(request.Id);
+            return new DeleteProductCommandResponse(product.Id);
         }
     }
 }
