@@ -18,7 +18,7 @@ namespace ECommerceAPI.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("getByUserId/{id}")]
+        [Route("getByUserId/{userId}")]
         public async Task<IActionResult> GetCartByUserId(int userId)
         {
             var response = await _mediatR.Send(new GetCartByUserIdRequest(userId));

@@ -14,9 +14,6 @@ namespace ECommerceAPI.Application.Validators.PaymentValidator
         {
             RuleFor(x => x.OrderId).NotEmpty().WithMessage("OrderId boş olmamalı!")
             .GreaterThan(0).WithMessage("Geçerli bir OrderId girilmelidir");
-
-            RuleFor(x => x.Amount).NotEmpty().WithMessage("Tutar boş olmamalı!")
-                .GreaterThan(0).WithMessage("Geçerli bir tutar girilmelidir");
         }
     }
 }

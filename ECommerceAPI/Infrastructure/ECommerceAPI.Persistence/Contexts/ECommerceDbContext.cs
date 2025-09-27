@@ -27,6 +27,17 @@ namespace ECommerceAPI.Persistence.Contexts
                 .Property(u => u.UserRole)
                 .HasConversion<string>();
 
+            modelBuilder.Entity<Order>()
+                .Property(o => o.Status)
+                .HasConversion<string>();
+
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.Status)
+                .HasConversion<string>();
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.PaymentMethod)
+                .HasConversion<string>();
+
             base.OnModelCreating(modelBuilder);
         }
     }

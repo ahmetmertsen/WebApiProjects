@@ -20,7 +20,7 @@ namespace ECommerceAPI.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("getAllByUserId/{id}")]
+        [Route("getAllByUserId/{userId}")]
         public async Task<IActionResult> GetAllByUserId(int userId)
         {
             var response = await _mediatR.Send(new GetAllOrdersByUserIdRequest(userId));

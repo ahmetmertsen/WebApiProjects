@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Features.Orders.Commands.Update
 {
-    public record UpdateOrderStatusCommand(int Id, OrderStatus OrderStatus) : IRequest<UpdateOrderStatusCommandResponse>
+    public record UpdateOrderStatusCommand(int Id, OrderStatus Status) : IRequest<UpdateOrderStatusCommandResponse>
     {
     }
 }

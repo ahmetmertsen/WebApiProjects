@@ -37,7 +37,7 @@ namespace ECommerceAPI.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("getByOrderId/{id}")]
+        [Route("getByOrderId/{orderId}")]
         public async Task<IActionResult> GetByOrderId(int orderId)
         {
             var response = await _mediatR.Send(new GetPaymentByOrderIdRequest(orderId));

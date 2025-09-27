@@ -30,7 +30,7 @@ namespace ECommerceAPI.Application.Features.Orders.Queries.GetAll
                 throw new NotFoundException($"{request.UserId} Id'sine ait Kullanıcı bulunamadı...");
             }
 
-            var orders = _unitOfWork.OrderRepository.GetAllOrdersByUserIdAsync(user.Id);
+            var orders = await _unitOfWork.OrderRepository.GetAllOrdersByUserIdAsync(user.Id);
             var response =  _mapper.Map<List<OrderDto>>(orders);
             return response;
         }

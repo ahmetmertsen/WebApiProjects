@@ -24,7 +24,7 @@ namespace ECommerceAPI.Application.Features.Orders.Queries.GetById
 
         public async Task<OrderDto> Handle(GetByIdOrderRequest request, CancellationToken cancellationToken)
         {
-            var order = await _unitOfWork.OrderRepository.GetByIdAsync(request.Id);
+            var order = await _unitOfWork.OrderRepository.GetByIdOrderWithItemsAsync(request.Id);
             if (order == null)
             {
                 throw new NotFoundException($"{request.Id} Id'sine ait Sepet bulunamadı...");

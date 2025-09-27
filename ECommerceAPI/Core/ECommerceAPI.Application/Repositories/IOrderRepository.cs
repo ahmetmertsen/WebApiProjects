@@ -12,5 +12,7 @@ namespace ECommerceAPI.Application.Repositories
     {
         public Task<List<Order>> GetAllOrdersByUserIdAsync(int UserId);
 
+        public Task<Order> GetByIdOrderWithItemsAsync(int id);
+
     }
 }

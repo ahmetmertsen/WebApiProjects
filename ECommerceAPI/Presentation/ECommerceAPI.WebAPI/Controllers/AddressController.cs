@@ -2,6 +2,7 @@
 using ECommerceAPI.Application.Features.Addresses.Commands.Delete;
 using ECommerceAPI.Application.Features.Addresses.Commands.Update;
 using ECommerceAPI.Application.Features.Addresses.Queries.GetAll;
+using ECommerceAPI.Application.Features.Addresses.Queries.GetAllByUserId;
 using ECommerceAPI.Application.Features.Addresses.Queries.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -29,6 +30,14 @@ namespace ECommerceAPI.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("getAllByUserId/{userId}")]
+        public async Task<IActionResult> GetAllByUserId(int userId)
+        {
+            var response = await _mediatR.Send(new GetAllAddressesByUserIdRequest(userId));
+            return Ok(response);
+        }
+
+        [HttpGet]
         [Route("getById/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -36,6 +45,7 @@ namespace ECommerceAPI.WebAPI.Controllers
             return Ok(response);
         }
 
+  
         [HttpPost]
         [Route("create")]
         public async Task<IActionResult> Create([FromBody] CreateAddressCommand request)

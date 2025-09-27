@@ -23,18 +23,18 @@ namespace ECommerceAPI.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("getAllByCartId/{id}")]
-        public async Task<IActionResult> GetAllByCartId(int CartId)
+        [Route("getAllByCartId/{cartId}")]
+        public async Task<IActionResult> GetAllByCartId(int cartId)
         {
-            var response = await _mediatR.Send(new GetAllCartItemsByCartIdRequest(CartId));
+            var response = await _mediatR.Send(new GetAllCartItemsByCartIdRequest(cartId));
             return Ok(response);
         }
 
         [HttpGet]
         [Route("getById/{id}")]
-        public async Task<IActionResult> GetById(int Id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var response = await _mediatR.Send(new GetByIdCartItemRequest(Id));
+            var response = await _mediatR.Send(new GetByIdCartItemRequest(id));
             return Ok(response);
         }
 
@@ -56,9 +56,9 @@ namespace ECommerceAPI.WebAPI.Controllers
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public async Task<IActionResult> Delete(int Id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var response = await _mediatR.Send(new DeleteCartItemCommand(Id));
+            var response = await _mediatR.Send(new DeleteCartItemCommand(id));
             return Ok(response);
         }
 

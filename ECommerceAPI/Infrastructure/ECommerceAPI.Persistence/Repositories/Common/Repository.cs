@@ -1,5 +1,6 @@
 ﻿using ECommerceAPI.Application.Repositories.Common;
 using ECommerceAPI.Domain.Entities.Common;
+using ECommerceAPI.Domain.Exceptions;
 using ECommerceAPI.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -36,7 +37,7 @@ namespace ECommerceAPI.Persistence.Repositories.Common
             var entity = await Table.FindAsync(id);
             if (entity == null)
             {
-                //Exception yazılacak.
+                throw new NotFoundException("Entity bulunamadı...");
             }
             var result = Table.Remove(entity);
             return result;

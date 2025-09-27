@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Features.Payments.Commands.Create
 {
-    public record CreatePaymentCommand(int OrderId, PaymentMethod PaymentMethod, decimal Amount) : IRequest<CreatePaymentCommandResponse>
+    public record CreatePaymentCommand(int OrderId, PaymentMethod PaymentMethod) : IRequest<CreatePaymentCommandResponse>
     {
     }
 }

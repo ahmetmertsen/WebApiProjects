@@ -38,6 +38,7 @@ namespace ECommerceAPI.Application.Features.Payments.Commands.Create
 
             var paymentEntity = _mapper.Map<Payment>(request);
             paymentEntity.Status = PaymentStatus.Pending;
+            paymentEntity.Amount = order.TotalAmount;
             await _unitOfWork.PaymentRepository.AddAsync(paymentEntity);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
