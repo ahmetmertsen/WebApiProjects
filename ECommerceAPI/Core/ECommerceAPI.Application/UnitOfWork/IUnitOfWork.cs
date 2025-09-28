@@ -9,7 +9,7 @@ namespace ECommerceAPI.Application.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        public IUserRepository UserRepository { get; }
+        public ICustomerRepository CustomerRepository { get; }
         public IAddressRepository AddressRepository { get; }
         public ICartRepository CartRepository { get; }
         public ICartItemRepository CartItemRepository { get; }

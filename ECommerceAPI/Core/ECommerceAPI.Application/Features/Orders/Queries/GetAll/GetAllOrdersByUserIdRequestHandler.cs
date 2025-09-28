@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Features.Orders.Queries.GetAll
 {
-    public class GetAllOrdersByUserIdRequestHandler : IRequestHandler<GetAllOrdersByUserIdRequest, List<OrderDto>>
+    public class GetAllOrdersByUserIdRequestHandler : IRequestHandler<GetAllOrdersByCustomerIdRequest, List<OrderDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -22,15 +22,15 @@ namespace ECommerceAPI.Application.Features.Orders.Queries.GetAll
             _mapper = mapper;
         }
 
-        public async Task<List<OrderDto>> Handle(GetAllOrdersByUserIdRequest request, CancellationToken cancellationToken)
+        public async Task<List<OrderDto>> Handle(GetAllOrdersByCustomerIdRequest request, CancellationToken cancellationToken)
         {
-            var user =  await _unitOfWork.UserRepository.GetByIdAsync(request.UserId);
-            if (user == null)
+            var customer =  await _unitOfWork.CustomerRepository.GetByIdAsync(request.CustomerId);
+            if (customer == null)
             {
-                throw new NotFoundException($"{request.UserId} Id'sine ait Kullanıcı bulunamadı...");
+                throw new NotFoundException($"{request.CustomerId} Id'sine ait Kullanıcı bulunamadı...");
             }
 
-            var orders = await _unitOfWork.OrderRepository.GetAllOrdersByUserIdAsync(user.Id);
+            var orders = await _unitOfWork.OrderRepository.GetAllOrdersByCustomerIdAsync(customer.Id);
             var response =  _mapper.Map<List<OrderDto>>(orders);
             return response;
         }

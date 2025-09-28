@@ -1,7 +1,7 @@
-using ECommerceAPI.Application.Features.Users.Commands.Create;
-using ECommerceAPI.Application.Mapping.UserMapper;
+using ECommerceAPI.Application.Features.Customers.Commands.Create;
+using ECommerceAPI.Application.Mapping.CustomerMapper;
 using ECommerceAPI.Application.Repositories;
-using ECommerceAPI.Application.Validators.UserValidator;
+using ECommerceAPI.Application.Validators.CustomerValidator;
 using ECommerceAPI.Persistence.Contexts;
 using ECommerceAPI.Persistence.Extensions;
 using ECommerceAPI.Persistence.Repositories;
@@ -28,11 +28,11 @@ namespace ECommerceAPI.WebAPI
             builder.Services.AddPersistenceService(builder.Configuration);
 
             builder.Services.AddMediatR(cfg =>
-                    cfg.RegisterServicesFromAssemblyContaining<CreateUserCommand>());
+                    cfg.RegisterServicesFromAssemblyContaining<CreateCustomerCommand>());
 
-            builder.Services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<CreateCustomerCommandValidator>();
 
-            builder.Services.AddAutoMapper(typeof(UserProfile).Assembly);
+            builder.Services.AddAutoMapper(typeof(CustomerProfile).Assembly);
 
 
             var app = builder.Build();

@@ -17,8 +17,8 @@ namespace ECommerceAPI.Persistence.Repositories
 
         public OrderRepository(ECommerceDbContext context) : base(context) { _context = context; }
 
-        public async Task<List<Order>> GetAllOrdersByUserIdAsync(int UserId) => await _context.Orders
-            .Where(x => x.UserId == UserId)
+        public async Task<List<Order>> GetAllOrdersByCustomerIdAsync(int CustomerId) => await _context.Orders
+            .Where(x => x.CustomerId == CustomerId)
             .Include(o => o.Items)
             .ToListAsync();
 

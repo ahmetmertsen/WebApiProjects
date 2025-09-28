@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Features.Carts.Commands.Create
 {
-    public record CreateCartCommandResponse(int Id, int UserId)
+    public record CreateCartCommandResponse(int Id, int CustomerId)
     {
     }
 }

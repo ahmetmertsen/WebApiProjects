@@ -10,7 +10,7 @@ namespace ECommerceAPI.Application.Repositories
 {
     public interface IOrderRepository : IRepository<Order>
     {
-        public Task<List<Order>> GetAllOrdersByUserIdAsync(int UserId);
+        public Task<List<Order>> GetAllOrdersByCustomerIdAsync(int CustomerId);
 
         public Task<Order> GetByIdOrderWithItemsAsync(int id);
 

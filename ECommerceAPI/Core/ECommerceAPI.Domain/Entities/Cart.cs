@@ -9,8 +9,8 @@ namespace ECommerceAPI.Domain.Entities
 {
     public class Cart : BaseEntity
     {
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
 
         public ICollection<CartItem>? Items { get; set; }
     }

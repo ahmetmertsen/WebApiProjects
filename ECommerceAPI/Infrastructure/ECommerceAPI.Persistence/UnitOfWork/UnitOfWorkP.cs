@@ -13,7 +13,7 @@ namespace ECommerceAPI.Persistence.UnitOfWork
     {
         private readonly ECommerceDbContext _context;
 
-        public IUserRepository UserRepository { get; }
+        public ICustomerRepository CustomerRepository { get; }
         public IAddressRepository AddressRepository { get; }
         public ICartRepository CartRepository { get; }
         public ICartItemRepository CartItemRepository { get; }
@@ -22,10 +22,10 @@ namespace ECommerceAPI.Persistence.UnitOfWork
         public IProductRepository ProductRepository { get; }
         public IPaymentRepository PaymentRepository { get; }
 
-        public UnitOfWorkP(ECommerceDbContext context, IUserRepository userRepository, IAddressRepository addressRepository, ICartRepository cartRepository, ICartItemRepository cartItemRepository, IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, IProductRepository productRepository, IPaymentRepository paymentRepository)
+        public UnitOfWorkP(ECommerceDbContext context, ICustomerRepository customerRepository, IAddressRepository addressRepository, ICartRepository cartRepository, ICartItemRepository cartItemRepository, IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, IProductRepository productRepository, IPaymentRepository paymentRepository)
         {
             _context = context;
-            UserRepository = userRepository;
+            CustomerRepository = customerRepository;
             AddressRepository = addressRepository;
             CartRepository = cartRepository;
             CartItemRepository = cartItemRepository;

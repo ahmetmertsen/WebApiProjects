@@ -12,8 +12,8 @@ namespace ECommerceAPI.Application.Validators.AddressValidator
     {
         public CreateAddressCommandValidator() 
         {
-            RuleFor(x => x.UserId).NotEmpty().WithMessage("UserId boş olmamalı!")
-                .GreaterThan(0).WithMessage("Geçerli bir UserId girilmelidir");
+            RuleFor(x => x.CustomerId).NotEmpty().WithMessage("CustomerId boş olmamalı!")
+                .GreaterThan(0).WithMessage("Geçerli bir CustomerId girilmelidir");
 
             RuleFor(x => x.City).NotEmpty().WithMessage("Şehir boş olmamalı!");
 

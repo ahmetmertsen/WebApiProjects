@@ -18,7 +18,7 @@ namespace ECommerceAPI.Persistence.Repositories
 
         public AddressRepository(ECommerceDbContext context) : base(context) { _context = context; }
 
-        public async Task<List<Address>> GetAllByUserIdAsync(int userId) => await _context.Addresses
-            .Where(x => x.UserId == userId).ToListAsync();
+        public async Task<List<Address>> GetAllByCustomerIdAsync(int CustomerId) => await _context.Addresses
+            .Where(x => x.CustomerId == CustomerId).ToListAsync();
     }
 }

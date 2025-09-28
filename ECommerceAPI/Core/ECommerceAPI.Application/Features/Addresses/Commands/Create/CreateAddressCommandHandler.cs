@@ -29,10 +29,10 @@ namespace ECommerceAPI.Application.Features.Addresses.Commands.Create
         {
             await _validator.ValidateAndThrowAsync(request, cancellationToken);
 
-            var user = await _unitOfWork.UserRepository.GetByIdAsync(request.UserId);
-            if (user == null) 
+            var customer = await _unitOfWork.CustomerRepository.GetByIdAsync(request.CustomerId);
+            if (customer == null) 
             {
-                throw new NotFoundException($"{request.UserId} Id'sine ait Kullanıcı bulunamadı...");
+                throw new NotFoundException($"{request.CustomerId} Id'sine ait Müşteri bulunamadı...");
             }
 
             var addressEntity = _mapper.Map<Address>(request);

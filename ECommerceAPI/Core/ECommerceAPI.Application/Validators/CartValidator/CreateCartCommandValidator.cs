@@ -12,8 +12,8 @@ namespace ECommerceAPI.Application.Validators.CartValidator
     {
         public CreateCartCommandValidator() 
         {
-            RuleFor(x => x.UserId).NotEmpty().WithMessage("UserId boş olmamalı!")
-                .GreaterThan(0).WithMessage("Geçerli bir UserId girilmelidir");
+            RuleFor(x => x.CustomerId).NotEmpty().WithMessage("CustomerId boş olmamalı!")
+                .GreaterThan(0).WithMessage("Geçerli bir CustomerId girilmelidir");
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Features.Orders.Commands.Create
 {
-    public record CreateOrderCommandResponse(int Id, int UserId, int AddressId, OrderStatus OrderStatus = OrderStatus.Pending)
+    public record CreateOrderCommandResponse(int Id, int CustomerId, int AddressId, OrderStatus OrderStatus = OrderStatus.Pending)
     {
     }
 }

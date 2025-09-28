@@ -31,10 +31,10 @@ namespace ECommerceAPI.Application.Features.Orders.Commands.Create
         {
             await _validator.ValidateAndThrowAsync(request, cancellationToken);
 
-            var cart = await _unitOfWork.CartRepository.GetByUserIdAsync(request.UserId);
+            var cart = await _unitOfWork.CartRepository.GetByCustomerIdAsync(request.CustomerId);
             if (cart == null)
             {
-                throw new NotFoundException($"{request.UserId} Id'sine ait Kullanıcı Sepeti bulunamadı...");
+                throw new NotFoundException($"{request.CustomerId} Id'sine ait Müşteri Sepeti bulunamadı...");
             }
 
             var cartItem = await _unitOfWork.CartItemRepository.GetAllByCartIdAsync(cart.Id);
@@ -43,7 +43,7 @@ namespace ECommerceAPI.Application.Features.Orders.Commands.Create
                 throw new NotFoundException($"{cart.Id} Id'sine ait Sepet bulunamadı...");
             }
 
-            var order = new Order { UserId = request.UserId , AddressId=request.AddressId, Status = OrderStatus.Pending, TotalAmount = 0, Items = new List<OrderItem>() };
+            var order = new Order { CustomerId = request.CustomerId, AddressId=request.AddressId, Status = OrderStatus.Pending, TotalAmount = 0, Items = new List<OrderItem>() };
 
             foreach (var item in cartItem)
             {
@@ -69,7 +69,7 @@ namespace ECommerceAPI.Application.Features.Orders.Commands.Create
             }
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return new CreateOrderCommandResponse(order.Id, order.UserId, order.AddressId, order.Status);
+            return new CreateOrderCommandResponse(order.Id, order.CustomerId, order.AddressId, order.Status);
         }
     }
 }

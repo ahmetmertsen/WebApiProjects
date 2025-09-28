@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Features.Carts.Commands.Create
 {
-    public record CreateCartCommand(int UserId) : IRequest<CreateCartCommandResponse>
+    public record CreateCartCommand(int CustomerId) : IRequest<CreateCartCommandResponse>
     {
     }
 }

@@ -1,5 +1,5 @@
 ﻿using ECommerceAPI.Application.Features.Carts.Commands.Create;
-using ECommerceAPI.Application.Features.Carts.Queries.GetCartByUserId;
+using ECommerceAPI.Application.Features.Carts.Queries.GetCartByCustomerId;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +18,10 @@ namespace ECommerceAPI.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("getByUserId/{userId}")]
-        public async Task<IActionResult> GetCartByUserId(int userId)
+        [Route("getByCustomerId/{customerId}")]
+        public async Task<IActionResult> GetCartByCustomerId(int customerId)
         {
-            var response = await _mediatR.Send(new GetCartByUserIdRequest(userId));
+            var response = await _mediatR.Send(new GetCartByCustomerIdRequest(customerId));
             return Ok(response);
         }
 

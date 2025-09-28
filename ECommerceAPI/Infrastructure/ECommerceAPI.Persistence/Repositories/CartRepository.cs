@@ -16,9 +16,9 @@ namespace ECommerceAPI.Persistence.Repositories
         private readonly ECommerceDbContext _context;
         public CartRepository(ECommerceDbContext context) : base(context) { _context = context; }
 
-        public async Task<Cart?> GetByUserIdAsync(int userId) => await _context.Carts
+        public async Task<Cart?> GetByCustomerIdAsync(int CustomerId) => await _context.Carts
             .Include(c => c.Items)
-            .FirstOrDefaultAsync(c => c.UserId == userId);
+            .FirstOrDefaultAsync(c => c.CustomerId == CustomerId);
 
 
     }

@@ -11,6 +11,6 @@ namespace ECommerceAPI.Application.Repositories
 {
     public interface IAddressRepository : IRepository<Address>
     {
-        public Task<List<Address>> GetAllByUserIdAsync(int userId);
+        public Task<List<Address>> GetAllByCustomerIdAsync(int CustomerId);
     }
 }

@@ -10,7 +10,7 @@ namespace ECommerceAPI.Application.Dtos
     public class OrderDto
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public int CustomerId { get; set; }
         public int AddressId { get; set; }
         public OrderStatus Status { get; set; }
         public decimal TotalAmount { get; set; }

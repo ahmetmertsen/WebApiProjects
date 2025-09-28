@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceAPI.Application.Features.Addresses.Commands.Create
 {
-    public record CreateAddressCommandResponse(int Id, int UserId, string City, string District, string AddressDetails)
+    public record CreateAddressCommandResponse(int Id, int CustomerId, string City, string District, string AddressDetails)
     {
     }
 }
