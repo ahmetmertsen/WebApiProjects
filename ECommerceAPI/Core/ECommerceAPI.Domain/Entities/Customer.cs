@@ -1,4 +1,5 @@
 ﻿using ECommerceAPI.Domain.Entities.Common;
+using ECommerceAPI.Domain.Entities.Identity;
 using ECommerceAPI.Domain.Enum;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace ECommerceAPI.Domain.Entities
     public class Customer : BaseEntity
     {
         public string FullName { get; set; }
+
+        public int UserId { get; set; }
+        public User User { get; set; }
 
         public ICollection<Address> Addresses { get; set; }
         public Cart? Cart { get; set; }

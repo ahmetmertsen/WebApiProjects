@@ -3,6 +3,7 @@ using System;
 using ECommerceAPI.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommerceAPI.Persistence.Migrations
 {
     [DbContext(typeof(ECommerceDbContext))]
-    partial class ECommerceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250929131938_mig_2")]
+    partial class mig_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,6 +116,9 @@ namespace ECommerceAPI.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("timestamp with time zone");
 
@@ -121,17 +126,14 @@ namespace ECommerceAPI.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("ECommerceAPI.Domain.Entities.Identity.Role", b =>
+            modelBuilder.Entity("ECommerceAPI.Domain.Entities.Identity.AppRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -160,7 +162,7 @@ namespace ECommerceAPI.Persistence.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("ECommerceAPI.Domain.Entities.Identity.User", b =>
+            modelBuilder.Entity("ECommerceAPI.Domain.Entities.Identity.AppUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -496,9 +498,9 @@ namespace ECommerceAPI.Persistence.Migrations
 
             modelBuilder.Entity("ECommerceAPI.Domain.Entities.Customer", b =>
                 {
-                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.User", "User")
+                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.AppUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -556,7 +558,7 @@ namespace ECommerceAPI.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.Role", null)
+                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -565,7 +567,7 @@ namespace ECommerceAPI.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.User", null)
+                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -574,7 +576,7 @@ namespace ECommerceAPI.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.User", null)
+                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -583,13 +585,13 @@ namespace ECommerceAPI.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.Role", null)
+                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.User", null)
+                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -598,7 +600,7 @@ namespace ECommerceAPI.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.User", null)
+                    b.HasOne("ECommerceAPI.Domain.Entities.Identity.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
